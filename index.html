@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Exemplo de requisição HTTP GET com javascript puro</title>
+    <title>🗳 TSE</title>
 </head>
 <body>
-    <input type="text" id="url" style="width:300px;" value="insira sua URL aqui">
-    <form>
-        <label>Resposta requisição</label>
-        <textarea id = "result" placeholder="Aguardando API"></textarea>
-        </form>
-    <button class = "send_request">Fazer requisição</button>  
+    <label for="regioes">Região:</label>
+    <select id="regiao">
+        <option>NACIONAL</option>
+        <option>NORTE</option>
+        <option>NORDESTE</option>
+        <option>CENTROOESTE</option>
+        <option>SUDESTE</option>
+        <option>SUL</option>
+    </select>
+    <label for="estados">UF:</label>
+    <select id="estado">
+        <option>-</option>
+    </select>
+    <label for="cidades">Cidade:</label>
+    <select id="cidade">
+        <option>-</option>
+    </select>
+    <label for="cargos">Cargo:</label>
+    <select id="cargo">
+        <option>PREFEITO</option>
+        <option>VEREADOR</option>      
+    <input type="checkbox" id="chkCor" name="chkCor" value="cor">
+     <label for="chkCor">Cor/Raça</label><br>     
+    <label>Resposta requisição:</label>
+        <textarea id="result" placeholder="Aguardando API"></textarea>
+    </form>
+    <button id = "btnRequest" class="send_request">Buscar</button>
 </body>
 <script src="main.js"></script>
+
 </html>
