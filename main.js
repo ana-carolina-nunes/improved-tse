@@ -2,6 +2,8 @@ var url;
 var objJson;
 
 const btnRequest = document.getElementById('btnRequest');
+const btnExport = document.getElementById('btnExport');
+
 const txtResponse = document.getElementById('result');
 
 var optRegioes = document.getElementById('regiao');
@@ -107,7 +109,7 @@ function getCandidates(event) {
                 }
             }
 
-            url = " https://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2024/" + codCidadeSelecionada + "/2045202024/"+tipoCargo+"/candidatos";
+            url = " https://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2024/" + codCidadeSelecionada + "/2045202024/" + tipoCargo + "/candidatos";
             const xhr = new XMLHttpRequest();
             xhr.open("GET", url);
             xhr.send();
@@ -131,7 +133,7 @@ function getCandidates(event) {
                         xhrCandidato.onload = () => {
                             if (xhrCandidato.readyState == 4 && xhrCandidato.status == 200) {
                                 objJsonDadosCandidato = xhrCandidato.response;
-                                txtResponse.value += `${objJsonDadosCandidato.nomeUrna}: ${objJsonDadosCandidato.numero} cor/raça: ${objJsonDadosCandidato.descricaoCorRaca} \n`;
+                                txtResponse.value += `${objJsonDadosCandidato.nomeUrna};${objJsonDadosCandidato.numero};${objJsonDadosCandidato.descricaoCorRaca} \n`;
                             } else {
                                 console.log(`Erro na busca de dados de candidatos: ${xhrCandidato.status}`);
                             }
@@ -146,48 +148,27 @@ function getCandidates(event) {
     }
 }
 
+btnExport.addEventListener('click', exportCsv);
+function exportCsv(event) {
+    let csvContent = txtResponse.value;
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8,' });
+    const objUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', objUrl);
+    link.setAttribute('download', `Candidatos-${optCargo.options[optCargo.selectedIndex].value}.csv`);
+    link.textContent = 'Click to Download';
 
-/*
-onclick = function (event) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.send();
-    xhr.responseType = "json";
+    document.querySelector('body').append(link);
 
-    xhr.onload = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            objJsonCandidatos = xhr.response;
-            console.log(objJsonCandidatos.candidatos);
-            console.log(objJsonCandidatos.candidatos.length);
+    /*
+    let csvContent = txtResponse.value;
+    console.log(txtResponse.value);
+    window.open("data:text/csv;charset=utf-8," + encodeURIComponent(txtResponse.value));
 
-            for (var i = 0; i < objJsonCandidatos.candidatos.length; i++) {
-                url = "https://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/2024/49590/2045202024/candidato/" + objJsonCandidatos.candidatos[i].id;
 
-                const xhrCandidato = new XMLHttpRequest();
-                xhrCandidato.open("GET", url);
-                xhrCandidato.send();
-                xhrCandidato.responseType = "json";
-
-                xhrCandidato.onload = () => {
-                    if (xhrCandidato.readyState == 4 && xhrCandidato.status == 200) {
-                        objJsonDadosCandidato = xhrCandidato.response;
-                        console.log(objJsonDadosCandidato.nomeUrna + '-> ' + objJsonDadosCandidato.numero + ' cor/raça: ' + objJsonDadosCandidato.descricaoCorRaca);
-
-                    } else {
-                        console.log(`Erro na busca de dados de candidatos: ${xhrCandidato.status}`);
-                    }
-                };
-
-            }
-
-        } else {
-            console.log(`Erro na busca de candidatos: ${xhr.status}`);
-        }
-    };
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8,' })
+    const objUrl = URL.createObjectURL(blob)*/
 }
-*/
-
-
 
 /*
 onclick = function (evento) {
