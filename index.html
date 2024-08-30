@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>🗳 TSE</title>
 </head>
+
 <body>
     <label for="regioes">Região:</label>
     <select id="regiao">
@@ -24,14 +26,24 @@
     <label for="cargos">Cargo:</label>
     <select id="cargo">
         <option>PREFEITO</option>
-        <option>VEREADOR</option>      
-    <input type="checkbox" id="chkCor" name="chkCor" value="cor">
-     <label for="chkCor">Cor/Raça</label><br>     
-    <label>Resposta requisição:</label>
+        <option>VEREADOR</option>
+        <input type="checkbox" id="chkCor" name="chkCor" value="cor">
+        <label for="chkCor">Cor/Raça</label><br>
+        <input type="checkbox" id="chkGrauInstrucao" name="chkGrauInstrucao" value="grauInstrucao">
+        <label for="chkGrauInstrucao">Grau de instrução</label><br>
+        <input type="checkbox" id="chkGenero" name="chkGenero" value="genero">
+        <label for="chkGenero">Gênero</label><br>
+        <input type="checkbox" id="chkQuilombola" name="chkQuilombola" value="quilombola">
+        <label for="chkQuilombola">Quilombola</label><br>
+        <input type="checkbox" id="chkPartido" name="chkPartido" value="partido">
+        <label for="chkPartido">Partido</label><br>
+        <input type="checkbox" id="chkBens" name="chkBens" value="bens">
+        <label for="chkBens">Bens</label><br>
+        <label>Resposta requisição:</label>
         <textarea id="result" placeholder="Aguardando API"></textarea>
-    </form>
-    <button id = "btnRequest" class="send_request">Buscar</button>
-    <button id = "btnExport" class="export_csv">Exportar</button>
+        </form>
+        <button id="btnRequest" class="send_request">Buscar</button>
+        <button id="btnExport" class="export_csv">Exportar</button>
 </body>
 <script src="main.js"></script>
 
