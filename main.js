@@ -12,6 +12,12 @@ var optCidades = document.getElementById('cidade');
 var optCargo = document.getElementById('cargo');
 
 var chkCor = document.getElementById('chkCor');
+var chkGenero = document.getElementById('chkGenero'); 
+var chkQuilombola = document.getElementById('chkQuilombola'); 
+var chkGrauInstrucao = document.getElementById('chkGrauInstrucao'); 
+var chkBens = document.getElementById('chkBens'); 
+var chkPartido = document.getElementById('chkPartido'); 
+
 optRegioes.addEventListener('change', changeOptRegioes);
 function changeOptRegioes(event) {
     console.log(event);
@@ -87,7 +93,7 @@ function getCandidates(event) {
     const uf = optEstados.options[optEstados.selectedIndex].value;
     const cidadeAtual = optCidades.options[optCidades.selectedIndex].value;
     const tipoCargo = optCargo.options[optCargo.selectedIndex].value == 'PREFEITO' ? '11' : '13';
-
+    txtResponse.value = '';
     url = "https://divulgacandcontas.tse.jus.br/divulga/rest/v1/eleicao/buscar/" + uf + "/2045202024/municipios";
 
     console.log(url);
@@ -133,7 +139,29 @@ function getCandidates(event) {
                         xhrCandidato.onload = () => {
                             if (xhrCandidato.readyState == 4 && xhrCandidato.status == 200) {
                                 objJsonDadosCandidato = xhrCandidato.response;
-                                txtResponse.value += `${objJsonDadosCandidato.nomeUrna};${objJsonDadosCandidato.numero};${objJsonDadosCandidato.descricaoCorRaca} \n`;
+                                txtResponse.value += `${objJsonDadosCandidato.nomeUrna};${objJsonDadosCandidato.numero};`;
+                               
+                                if (chkPartido.checked) {
+                                    txtResponse.value += `${objJsonDadosCandidato.partido.nome}; `;
+                                }
+                                if (chkCor.checked) {
+                                    txtResponse.value += `${objJsonDadosCandidato.descricaoCorRaca}; `;
+                                }
+                                if (chkQuilombola.checked) {
+                                    txtResponse.value += `Quilombola: ${objJsonDadosCandidato.infoComplementar.quilombola}; `;
+                                }
+                                if (chkGenero.checked) {
+                                    txtResponse.value += `${objJsonDadosCandidato.descricaoSexo}; `;
+                                }
+                                if (chkGrauInstrucao.checked) {
+                                    txtResponse.value += `${objJsonDadosCandidato.grauInstrucao}; `;
+                                }
+                                if (chkBens.checked) {
+                                    txtResponse.value += `Total de bens: ${objJsonDadosCandidato.totalDeBens.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}; `;
+                                }
+
+                                txtResponse.value += `\n`;
+
                             } else {
                                 console.log(`Erro na busca de dados de candidatos: ${xhrCandidato.status}`);
                             }
