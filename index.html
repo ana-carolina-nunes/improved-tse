@@ -3,47 +3,86 @@
 
 <head>
     <title>🗳 TSE</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <label for="regioes">Região:</label>
-    <select id="regiao">
-        <option>NACIONAL</option>
-        <option>NORTE</option>
-        <option>NORDESTE</option>
-        <option>CENTROOESTE</option>
-        <option>SUDESTE</option>
-        <option>SUL</option>
-    </select>
-    <label for="estados">UF:</label>
-    <select id="estado">
-        <option>-</option>
-    </select>
-    <label for="cidades">Cidade:</label>
-    <select id="cidade">
-        <option>-</option>
-    </select>
-    <label for="cargos">Cargo:</label>
-    <select id="cargo">
-        <option>PREFEITO</option>
-        <option>VEREADOR</option>
-        <input type="checkbox" id="chkCor" name="chkCor" value="cor">
-        <label for="chkCor">Cor/Raça</label><br>
-        <input type="checkbox" id="chkGrauInstrucao" name="chkGrauInstrucao" value="grauInstrucao">
-        <label for="chkGrauInstrucao">Grau de instrução</label><br>
-        <input type="checkbox" id="chkGenero" name="chkGenero" value="genero">
-        <label for="chkGenero">Gênero</label><br>
-        <input type="checkbox" id="chkQuilombola" name="chkQuilombola" value="quilombola">
-        <label for="chkQuilombola">Quilombola</label><br>
-        <input type="checkbox" id="chkPartido" name="chkPartido" value="partido">
-        <label for="chkPartido">Partido</label><br>
-        <input type="checkbox" id="chkBens" name="chkBens" value="bens">
-        <label for="chkBens">Bens</label><br>
-        <label>Resposta requisição:</label>
+    <section class="filtros">
+        <section class="combos">
+            <label for="regioes">Região:</label>
+            <select id="regiao">
+                <option>NACIONAL</option>
+                <option>NORTE</option>
+                <option>NORDESTE</option>
+                <option>CENTROOESTE</option>
+                <option>SUDESTE</option>
+                <option>SUL</option>
+            </select>
+            <label for="estados">UF:</label>
+            <select id="estado">
+                <option>-</option>
+            </select>
+            <label for="cidades">Cidade:</label>
+            <select id="cidade">
+                <option>-</option>
+            </select>
+            <label for="cargos">Cargo:</label>
+            <select id="cargo">
+                <option>PREFEITO</option>
+                <option>VEREADOR</option>
+            </select>
+        </section>
+
+        <section class="opcoes">
+            <section class="opt">
+                <input type="checkbox" id="chkCor" name="chkCor" value="cor">
+                <label for="chkCor">Cor/Raça</label><br>
+            </section>
+            <section class="opt">
+                <input type="checkbox" id="chkGrauInstrucao" name="chkGrauInstrucao" value="grauInstrucao">
+                <label for="chkGrauInstrucao">Grau de instrução</label><br>
+            </section>
+            <section class="opt">
+                <input type="checkbox" id="chkGenero" name="chkGenero" value="genero">
+                <label for="chkGenero">Gênero</label><br>
+            </section>
+            <section class="opt">
+                <input type="checkbox" id="chkQuilombola" name="chkQuilombola" value="quilombola">
+                <label for="chkQuilombola">Quilombola</label><br>
+            </section>
+            <section class="opt">
+                <input type="checkbox" id="chkPartido" name="chkPartido" value="partido">
+                <label for="chkPartido">Partido</label><br>
+            </section>
+            <section class="opt">
+                <input type="checkbox" id="chkBens" name="chkBens" value="bens">
+                <label for="chkBens">Bens</label><br>
+            </section>
+        </section>
+    </section>
+
+    <section class="resultados"> <label>Resposta requisição:</label>
         <textarea id="result" placeholder="Aguardando API"></textarea>
         </form>
         <button id="btnRequest" class="send_request">Buscar</button>
         <button id="btnExport" class="export_csv">Exportar</button>
+    </section>
+
+    <footer class="rodape">
+        <section class="footer_text">
+            <p class="credits">
+                Desenvolvido por Ana Carolina.
+            </p>
+            <a class="apresentacao_links_navegacao" href="https://github.com/ana-carolina-nunes">
+                <img class = "container_img_logo" src="./assets/github_logo.png">
+                Github
+            </a>
+            <a class="apresentacao_links_navegacao" href="https://www.linkedin.com/in/ana-carolina-nunes-16703914b/">
+                <img class = "container_img_logo" src="./assets/limkedin_logo.png">
+                LinkedIn
+            </a>
+        </section>
+    </footer>
 </body>
 <script src="main.js"></script>
 
